@@ -24,10 +24,22 @@
         </tfoot>
         <tbody>
             @foreach ($highscores as $pos => $highscore)
-                <tr>
+                <tr class="{{ $highscore->id == $highlighted ? 'is-selected' : '' }}">
                     <th>{{ $pos + 1 }}</th>
                     <td>{{ $highscore->name }}</td>
-                    <td><abbr title="{{ $highscore->score }}">{{ sprintf("%.0f%%", $highscore->score * 100) }}</abbr></td>
+                    <td
+                        class="{{
+                            $highscore->score > 3
+                                ? 'is-success'
+                                : (
+                                    $highscore->score > 0
+                                        ? 'is-warning'
+                                        : 'is-danger'
+                                )
+                        }}"
+                    >
+                        {{ $highscore->score }}
+                    </td>
                     <td>{{ $highscore->player_score }}</td>
                     <td>{{ $highscore->computer_score }}</td>
                     <td>{{ $highscore->created_at }}</td>
