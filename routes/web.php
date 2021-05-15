@@ -34,5 +34,6 @@ Route::post('/game21/stop', [Game21Controller::class, 'stop'])->name('game21.sto
 Route::post('/game21/save-score', [Game21Controller::class, 'saveScore'])->name('game21.saveScore');
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
+Route::post('/books/create', [BookController::class, 'create'])->name('books.create');
 
 Route::get('/highscores', [HighscoreController::class, 'index'])->name('highscores');

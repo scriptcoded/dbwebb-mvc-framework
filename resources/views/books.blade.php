@@ -23,4 +23,44 @@
             </article>
         </div>
     @endforeach
+
+    <h3 class="title">Create book</h3>
+
+    <form method="POST" action="{{ URL::Route('books.create') }}" class="mb-4">
+        @csrf
+
+        <div class="field">
+            <label class="label">ISBN</label>
+            <div class="control">
+                <input class="input" type="text" name="isbn" placeholder="ISBN">
+            </div>
+        </div>
+    
+        <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+                <input class="input" type="text" name="title" placeholder="Title">
+            </div>
+        </div>
+    
+        <div class="field">
+            <label class="label">Author</label>
+            <div class="control">
+                <input class="input" type="text" name="author" placeholder="Author">
+            </div>
+        </div>
+    
+        <div class="field">
+            <label class="label">Cover Image</label>
+            <div class="control">
+                <input class="input" type="text" name="cover_image" placeholder="Cover Image">
+            </div>
+        </div>
+        
+        <div class="field is-grouped">
+            <div class="control">
+                <button class="button is-link" type="submit">Create</button>
+            </div>
+        </div>
+    </form>
 </x-layout>

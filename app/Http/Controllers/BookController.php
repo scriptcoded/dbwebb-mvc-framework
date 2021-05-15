@@ -15,4 +15,17 @@ class BookController extends BaseController
             'books' => $books
         ]);
     }
+
+    public function create(Request $request) {
+        $book = new Book;
+
+        $book->isbn = $request->input('isbn');
+        $book->title = $request->input('title');
+        $book->author = $request->input('author');
+        $book->cover_image = $request->input('cover_image');
+
+        $book->save();
+
+        return redirect()->route('books');
+    }
 }
