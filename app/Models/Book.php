@@ -13,6 +13,4 @@ class Book extends Model
     protected $primaryKey = 'isbn';
     public $incrementing = false;
     protected $keyType = 'string';
-
-    
 }
