@@ -24,6 +24,9 @@
           <a class="button {{ Route::is('books') ? 'is-primary' : 'is-text' }}" href="{{ URL::Route('books') }}">
             Booksies
           </a>
+          <a class="button {{ Route::is('highscores') ? 'is-primary' : 'is-text' }}" href="{{ URL::Route('highscores') }}">
+            Highscores
+          </a>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\Game21Controller;
+use App\Http\Controllers\HighscoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,3 +33,5 @@ Route::post('/game21/roll', [Game21Controller::class, 'roll'])->name('game21.rol
 Route::post('/game21/stop', [Game21Controller::class, 'stop'])->name('game21.stop');
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
+
+Route::get('/highscores', [HighscoreController::class, 'index'])->name('highscores');
