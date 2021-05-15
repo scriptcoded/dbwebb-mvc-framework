@@ -47,14 +47,29 @@
 
         @if ($game->get_winner())
             @if ($game->get_winner() === 'player')
-                <h3>Congratulations! You won!</h3>
+                <h3 class="mb-3">Congratulations! You won!</h3>
             @elseif ($game->get_winner() === 'computer')
-                <h3>Oh no! You lost!</h3>
+                <h3 class="mb-3">Oh no! You lost!</h3>
             @endif
 
-            <form method="POST" action="{{ URL::Route('game21.nextRound') }}">
+            <form method="POST" action="{{ URL::Route('game21.nextRound') }}" class="mb-4">
                 @csrf
                 <button class="button is-link" type="submit">Next round</button>
+            </form>
+
+            <p class="mb-2">If you've finished playing you can save your score to the leader board. This will also reset your score.</p>
+
+            <form method="POST" action="{{ URL::Route('game21.saveScore') }}">
+                @csrf
+
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input" type="text" name="name" placeholder="Your name">
+                    </div>
+                    <div class="control">
+                        <button class="button is-link" type="submit">Save highscore</button>
+                    </div>
+                </div>
             </form>
         @else
             <div class="is-clearfix mb-4">

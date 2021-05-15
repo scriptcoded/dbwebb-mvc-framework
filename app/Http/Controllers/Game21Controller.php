@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Classes\Game21\Game;
+use App\Models\Highscore;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
@@ -51,5 +52,26 @@ class Game21Controller extends BaseController
         $game->next_round();
 
         return redirect()->route('game21');
+    }
+
+    public function saveScore(Request $request) {
+        $game = $request->session()->get('game21');
+
+        $player_score = $game->get_wins_player();
+        $computer_score = $game->get_wins_computer();
+
+        $highscore = new Highscore;
+
+        $highscore->name = $request->input('name');
+        $highscore->player_score = $player_score;
+        $highscore->computer_score = $computer_score;
+
+        $highscore->save();
+
+        $request->session()->forget('game21');
+
+        return redirect()->route('highscores', [
+            'score_id' => $highscore->id
+        ]);
     }
 }

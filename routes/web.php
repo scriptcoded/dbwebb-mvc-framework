@@ -31,6 +31,7 @@ Route::post('/game21/set-dice', [Game21Controller::class, 'setDice'])->name('gam
 Route::post('/game21/next-round', [Game21Controller::class, 'nextRound'])->name('game21.nextRound');
 Route::post('/game21/roll', [Game21Controller::class, 'roll'])->name('game21.roll');
 Route::post('/game21/stop', [Game21Controller::class, 'stop'])->name('game21.stop');
+Route::post('/game21/save-score', [Game21Controller::class, 'saveScore'])->name('game21.saveScore');
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
 
