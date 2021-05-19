@@ -18,5 +18,5 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     # RewriteRule ^ index.php [L]
-    RewriteRule (.*) /~manh20/dbwebb-kurser/mvc/me/orm/public/ [NC,L]
+    RewriteRule (.*) /~manh20/dbwebb-kurser/mvc/me/ci/public/ [NC,L]
 </IfModule>
