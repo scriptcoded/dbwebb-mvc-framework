@@ -17,7 +17,7 @@ class GraphicalDiceTest extends TestCase
      */
     public function testCreateTheClass()
     {
-        $dice = new GraphicalDice(6);
+        $dice = new GraphicalDice();
         $this->assertInstanceOf("App\Http\Classes\Game21\GraphicalDice", $dice);
     }
 
@@ -26,7 +26,7 @@ class GraphicalDiceTest extends TestCase
      */
     public function testRender()
     {
-        $dice = new GraphicalDice(6);
+        $dice = new GraphicalDice();
         $res = $dice->render();
 
         $this->assertStringStartsWith("╭", $res);

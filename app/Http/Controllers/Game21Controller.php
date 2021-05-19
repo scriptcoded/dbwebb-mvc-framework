@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 
 class Game21Controller extends BaseController
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         if (!$request->session()->has('game21')) {
             $request->session()->put('game21', new Game());
         }
@@ -20,47 +21,53 @@ class Game21Controller extends BaseController
         ]);
     }
 
-    public function reset(Request $request) {
+    public function reset(Request $request)
+    {
         $request->session()->forget('game21');
 
         return redirect()->route('game21');
     }
 
-    public function setDice(Request $request) {
+    public function setDice(Request $request)
+    {
         $game = $request->session()->get('game21');
-        $game->set_dice_count(intval($request->input('dice')));
+        $game->setDiceCount(intval($request->input('dice')));
 
         return redirect()->route('game21');
     }
 
-    public function roll(Request $request) {
+    public function roll(Request $request)
+    {
         $game = $request->session()->get('game21');
         $game->roll();
 
         return redirect()->route('game21');
     }
 
-    public function stop(Request $request) {
+    public function stop(Request $request)
+    {
         $game = $request->session()->get('game21');
-        $game->play_computer();
+        $game->playComputer();
 
         return redirect()->route('game21');
     }
 
-    public function nextRound(Request $request) {
+    public function nextRound(Request $request)
+    {
         $game = $request->session()->get('game21');
-        $game->next_round();
+        $game->nextRound();
 
         return redirect()->route('game21');
     }
 
-    public function saveScore(Request $request) {
+    public function saveScore(Request $request)
+    {
         $game = $request->session()->get('game21');
 
-        $player_score = $game->get_wins_player();
-        $computer_score = $game->get_wins_computer();
+        $player_score = $game->getWinsPlayer();
+        $computer_score = $game->getWinsComputer();
 
-        $highscore = new Highscore;
+        $highscore = new Highscore();
 
         $highscore->name = $request->input('name');
         $highscore->player_score = $player_score;

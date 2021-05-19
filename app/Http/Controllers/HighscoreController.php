@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class HighscoreController extends BaseController
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $highscores = DB::table('highscores')
             ->select('*', DB::raw('(`player_score`- `computer_score`) AS score'))
             ->orderBy('score', 'desc')

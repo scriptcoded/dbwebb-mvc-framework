@@ -29,9 +29,9 @@ class DiceTest extends TestCase
     public function testGetSetSides()
     {
         $dice = new Dice(6);
-        $dice->set_sides(5);
-        
-        $this->assertEquals($dice->get_sides(), 5);
+        $dice->setSides(5);
+
+        $this->assertEquals($dice->getSides(), 5);
     }
 
     /**
@@ -41,7 +41,7 @@ class DiceTest extends TestCase
     {
         $dice = new Dice(6);
         $res = $dice->roll();
-        
-        $this->assertEquals($res, $dice->get_last_roll());
+
+        $this->assertEquals($res, $dice->getLastRoll());
     }
 }

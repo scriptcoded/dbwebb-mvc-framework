@@ -11,6 +11,12 @@
     <exclude-pattern>theme</exclude-pattern>
     <exclude-pattern>vendor</exclude-pattern>
 
+    <!-- Generated files -->
+    <exclude-pattern>node_modules</exclude-pattern>
+    <exclude-pattern>database/migrations</exclude-pattern>
+    <exclude-pattern>public</exclude-pattern>
+    <exclude-pattern>storage</exclude-pattern>
+
     <arg name="encoding" value="utf-8"/>
     <arg name="warning-severity" value="0"/>
 

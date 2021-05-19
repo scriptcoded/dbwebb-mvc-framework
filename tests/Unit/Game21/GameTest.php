@@ -28,9 +28,9 @@ class GameTest extends TestCase
     public function testSetGetDiceCount()
     {
         $game = new Game();
-        $game->set_dice_count(3);
+        $game->setDiceCount(3);
 
-        $this->assertEquals($game->get_dice_count(), 3);
+        $this->assertEquals($game->getDiceCount(), 3);
     }
 
     /**
@@ -39,8 +39,8 @@ class GameTest extends TestCase
     public function testGetHand()
     {
         $game = new Game();
-        $game->set_dice_count(3);
-        $hand = $game->get_hand();
+        $game->setDiceCount(3);
+        $hand = $game->getHand();
 
         $this->assertInstanceOf("App\Http\Classes\Game21\DiceHand", $hand);
     }
@@ -51,7 +51,7 @@ class GameTest extends TestCase
     public function testGetWinsPlayer()
     {
         $game = new Game();
-        $res = $game->get_wins_player();
+        $res = $game->getWinsPlayer();
 
         $this->assertEquals($res, 0);
     }
@@ -62,7 +62,7 @@ class GameTest extends TestCase
     public function testGetWinsComputer()
     {
         $game = new Game();
-        $res = $game->get_wins_computer();
+        $res = $game->getWinsComputer();
 
         $this->assertEquals($res, 0);
     }
@@ -73,7 +73,7 @@ class GameTest extends TestCase
     public function testGetPointsPlayer()
     {
         $game = new Game();
-        $res = $game->get_points_player();
+        $res = $game->getPointsPlayer();
 
         $this->assertEquals($res, 0);
     }
@@ -84,7 +84,7 @@ class GameTest extends TestCase
     public function testGetPointsComputer()
     {
         $game = new Game();
-        $res = $game->get_points_computer();
+        $res = $game->getPointsComputer();
 
         $this->assertEquals($res, 0);
     }
@@ -95,16 +95,16 @@ class GameTest extends TestCase
     public function testRollPlayer()
     {
         $handStub = $this->createMock(DiceHand::class);
-        $handStub->set_dice_count(6);
+        $handStub->setDiceCount(6);
         $handStub
-            ->method("get_last_result")
+            ->method("getLastResult")
             ->willReturn(21);
 
         $game = new Game();
         $game->hand = $handStub;
 
         $game->roll();
-        $res = $game->get_points_player();
+        $res = $game->getPointsPlayer();
 
         $this->assertEquals(21, $res);
     }
@@ -115,16 +115,16 @@ class GameTest extends TestCase
     public function testRollComputer()
     {
         $handStub = $this->createMock(DiceHand::class);
-        $handStub->set_dice_count(6);
+        $handStub->setDiceCount(6);
         $handStub
-            ->method("get_last_result")
+            ->method("getLastResult")
             ->willReturn(22);
 
         $game = new Game();
         $game->hand = $handStub;
 
         $game->roll();
-        $res = $game->get_points_player();
+        $res = $game->getPointsPlayer();
 
         $this->assertEquals(22, $res);
     }
@@ -135,11 +135,11 @@ class GameTest extends TestCase
     public function testNotClearWinner()
     {
         $game = new Game();
-        $game->set_dice_count(40);
+        $game->setDiceCount(40);
 
         $game->roll();
 
-        $this->assertNotNull($game->get_winner());
+        $this->assertNotNull($game->getWinner());
     }
 
     /**
@@ -148,12 +148,12 @@ class GameTest extends TestCase
     public function testClearWinner()
     {
         $game = new Game();
-        $game->set_dice_count(40);
+        $game->setDiceCount(40);
 
         $game->roll();
-        $game->clear_winner();
+        $game->clearWinner();
 
-        $this->assertNull($game->get_winner());
+        $this->assertNull($game->getWinner());
     }
 
     /**
@@ -162,11 +162,11 @@ class GameTest extends TestCase
     public function testPlayComputerFail()
     {
         $game = new Game();
-        $game->set_dice_count(40);
+        $game->setDiceCount(40);
 
-        $game->play_computer();
-        
-        $this->assertEquals($game->get_winner(), "player");
+        $game->playComputer();
+
+        $this->assertEquals($game->getWinner(), "player");
     }
 
     /**
@@ -175,11 +175,11 @@ class GameTest extends TestCase
     public function testPlayComputer()
     {
         $game = new Game();
-        $game->set_dice_count(1);
+        $game->setDiceCount(1);
 
-        $game->play_computer();
-        
-        $this->assertEquals($game->get_winner(), "computer");
+        $game->playComputer();
+
+        $this->assertEquals($game->getWinner(), "computer");
     }
 
     /**
@@ -188,13 +188,13 @@ class GameTest extends TestCase
     public function testNextRound()
     {
         $game = new Game();
-        $game->set_dice_count(40);
+        $game->setDiceCount(40);
 
         $game->roll();
-        $game->next_round();
-        
-        $this->assertNull($game->get_winner());
-        $this->assertEquals($game->get_points_player(), 0);
-        $this->assertEquals($game->get_points_computer(), 0);
+        $game->nextRound();
+
+        $this->assertNull($game->getWinner());
+        $this->assertEquals($game->getPointsPlayer(), 0);
+        $this->assertEquals($game->getPointsComputer(), 0);
     }
 }

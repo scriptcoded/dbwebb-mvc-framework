@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 
 class BookController extends BaseController
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $books = Book::all();
 
         return view('books', [
@@ -16,8 +17,9 @@ class BookController extends BaseController
         ]);
     }
 
-    public function create(Request $request) {
-        $book = new Book;
+    public function create(Request $request)
+    {
+        $book = new Book();
 
         $book->isbn = $request->input('isbn');
         $book->title = $request->input('title');

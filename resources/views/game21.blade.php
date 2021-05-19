@@ -9,7 +9,7 @@
     <br>
 
 
-    @if (!$game->get_dice_count())
+    @if (!$game->getDiceCount())
         <form method="POST" action="{{ URL::Route('game21.setDice') }}">
             @csrf
             <button class="button is-link" type="submit" name="dice" value="1">Play with 1 dice</button>
@@ -21,34 +21,34 @@
                 <tr>
                     <th>Points player</th>
                     <td>
-                        {{ $game->get_points_player() }}
+                        {{ $game->getPointsPlayer() }}
                     </td>
                 </tr>
                 <tr>
                     <th>Points computer</th>
                     <td>
-                        {{ $game->get_points_computer() }}
+                        {{ $game->getPointsComputer() }}
                     </td>
                 </tr>
                 <tr>
                     <th>Wins player</th>
                     <td>
-                        {{ $game->get_wins_player() }}
+                        {{ $game->getWinsPlayer() }}
                     </td>
                 </tr>
                 <tr>
                     <th>Wins computer</th>
                     <td>
-                        {{ $game->get_wins_computer() }}
+                        {{ $game->getWinsComputer() }}
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        @if ($game->get_winner())
-            @if ($game->get_winner() === 'player')
+        @if ($game->getWinner())
+            @if ($game->getWinner() === 'player')
                 <h3 class="mb-3">Congratulations! You won!</h3>
-            @elseif ($game->get_winner() === 'computer')
+            @elseif ($game->getWinner() === 'computer')
                 <h3 class="mb-3">Oh no! You lost!</h3>
             @endif
 
@@ -73,7 +73,7 @@
             </form>
         @else
             <div class="is-clearfix mb-4">
-                @foreach ($game->get_hand()->get_dice() as $dice)
+                @foreach ($game->getHand()->getDice() as $dice)
                     <pre class="game21-dice">{!! $dice->render() !!}</pre>
                 @endforeach
             </div>

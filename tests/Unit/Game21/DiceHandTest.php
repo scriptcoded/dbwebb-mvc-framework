@@ -29,9 +29,9 @@ class DiceHandTest extends TestCase
     public function testGetSetDiceCount()
     {
         $hand = new DiceHand(3);
-        $hand->set_dice_count(4);
-        
-        $this->assertEquals($hand->get_dice_count(), 4);
+        $hand->setDiceCount(4);
+
+        $this->assertEquals($hand->getDiceCount(), 4);
     }
 
     /**
@@ -40,8 +40,8 @@ class DiceHandTest extends TestCase
     public function testGetDice()
     {
         $hand = new DiceHand(3);
-        $res = $hand->get_dice();
-        
+        $res = $hand->getDice();
+
         $this->assertIsArray($res);
         $this->assertCount(3, $res);
     }
@@ -53,7 +53,7 @@ class DiceHandTest extends TestCase
     {
         $hand = new DiceHand(3);
         $res = $hand->roll();
-        
+
         $this->assertIsArray($res);
         $this->assertCount(3, $res);
     }
@@ -64,8 +64,8 @@ class DiceHandTest extends TestCase
     public function testGetLastResult()
     {
         $hand = new DiceHand(3);
-        $res = $hand->get_last_result();
-        
+        $res = $hand->getLastResult();
+
         $this->assertEquals($res, 0);
     }
 }

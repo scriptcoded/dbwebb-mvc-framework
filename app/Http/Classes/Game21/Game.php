@@ -4,107 +4,122 @@ declare(strict_types=1);
 
 namespace App\Http\Classes\Game21;
 
-class Game {
-  private int $points_player = 0;
-  private int $points_computer = 0;
-  private ?int $dice_count = null;
-  public $hand;
+class Game
+{
+    private int $points_player = 0;
+    private int $points_computer = 0;
+    private ?int $dice_count = null;
+    public $hand;
 
-  private int $wins_player = 0;
-  private int $wins_computer = 0;
+    private int $wins_player = 0;
+    private int $wins_computer = 0;
 
-  private ?string $winner = null;
+    private ?string $winner = null;
 
-  public function get_hand() {
-    return $this->hand;
-  }
-
-  public function set_dice_count($dice_count) {
-    $this->dice_count = $dice_count;
-
-    $this->hand = new DiceHand($dice_count);
-  }
-
-  public function get_dice_count() {
-    return $this->dice_count;
-  }
-
-  public function get_wins_player() {
-    return $this->wins_player;
-  }
-
-  public function get_wins_computer() {
-    return $this->wins_computer;
-  }
-
-  public function get_points_player() {
-    return $this->points_player;
-  }
-
-  public function get_points_computer() {
-    return $this->points_computer;
-  }
-
-  public function roll() {
-    $this->hand->roll();
-
-    $result = $this->hand->get_last_result();
-
-    $this->points_player += $result;
-
-    if ($this->points_player === 21) {
-      $this->set_winner_player();
-    } else if ($this->points_player > 21) {
-      $this->set_winner_computer();
-    }
-  }
-
-  public function set_winner_player() {
-    $this->winner = "player";
-    $this->wins_player += 1;
-  }
-
-  public function set_winner_computer() {
-    $this->winner = "computer";
-    $this->wins_computer += 1;
-  }
-
-  public function clear_winner() {
-    $this->winner = null;
-  }
-  
-  public function get_winner() {
-    return $this->winner;
-  }
-
-  public function play_computer() {
-    while ($this->points_computer < 21) {
-      $this->hand->roll();
-
-      $result = $this->hand->get_last_result();
-
-      $this->points_computer += $result;
-
-      if ($this->points_computer > 21) {
-        break;
-      }
-
-      $beat_player = $this->points_computer >= $this->points_player;
-      $beat_game = $this->points_computer === 21;
-
-      if ($beat_player || $beat_game) {
-        $this->set_winner_computer();
-        return;
-      }
+    public function getHand()
+    {
+        return $this->hand;
     }
 
-    $this->set_winner_player();
-  }
+    public function setDiceCount($dice_count)
+    {
+        $this->dice_count = $dice_count;
 
-  public function next_round() {
-    $this->clear_winner();
+        $this->hand = new DiceHand($dice_count);
+    }
 
-    $this->points_player = 0;
-    $this->points_computer = 0;
-  }
+    public function getDiceCount()
+    {
+        return $this->dice_count;
+    }
+
+    public function getWinsPlayer()
+    {
+        return $this->wins_player;
+    }
+
+    public function getWinsComputer()
+    {
+        return $this->wins_computer;
+    }
+
+    public function getPointsPlayer()
+    {
+        return $this->points_player;
+    }
+
+    public function getPointsComputer()
+    {
+        return $this->points_computer;
+    }
+
+    public function roll()
+    {
+        $this->hand->roll();
+
+        $result = $this->hand->getLastResult();
+
+        $this->points_player += $result;
+
+        if ($this->points_player === 21) {
+            $this->setWinnerPlayer();
+        } else if ($this->points_player > 21) {
+            $this->setWinnerComputer();
+        }
+    }
+
+    public function setWinnerPlayer()
+    {
+        $this->winner = "player";
+        $this->wins_player += 1;
+    }
+
+    public function setWinnerComputer()
+    {
+        $this->winner = "computer";
+        $this->wins_computer += 1;
+    }
+
+    public function clearWinner()
+    {
+        $this->winner = null;
+    }
+
+    public function getWinner()
+    {
+        return $this->winner;
+    }
+
+    public function playComputer()
+    {
+        while ($this->points_computer < 21) {
+            $this->hand->roll();
+
+            $result = $this->hand->getLastResult();
+
+            $this->points_computer += $result;
+
+            if ($this->points_computer > 21) {
+                break;
+            }
+
+            $beat_player = $this->points_computer >= $this->points_player;
+            $beat_game = $this->points_computer === 21;
+
+            if ($beat_player || $beat_game) {
+                $this->setWinnerComputer();
+                return;
+            }
+        }
+
+        $this->setWinnerPlayer();
+    }
+
+    public function nextRound()
+    {
+        $this->clearWinner();
+
+        $this->points_player = 0;
+        $this->points_computer = 0;
+    }
 }
